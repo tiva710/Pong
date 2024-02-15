@@ -3,7 +3,7 @@ using UnityEngine;
 public class DemoBall : MonoBehaviour
 {
 	public float initialSpeed = 20f; 
-	public float speedIncrement = 1.5f;
+	public float speedIncrement = 1f;
 	private Rigidbody rb;
 	public Vector3 startingPosition;
 
@@ -36,12 +36,16 @@ public class DemoBall : MonoBehaviour
 			Color randomColor = Random.ColorHSV();
 			GetComponent<Renderer>().material.color = randomColor;
 			Debug.Log(rb.velocity);
+
+			collision.gameObject.GetComponent<DemoPaddle>().PlayHitSound(currentSpeed);
+			Debug.Log("Current Speed: " + currentSpeed);
 		}
 		
 	}
+	
 	void OnTriggerEnter(Collider collision)
 	{
-
+	
 		if (collision.CompareTag("Goal1"))
 		{
 			FindObjectOfType<GameManager>().ScoreGoal("Left");
@@ -52,7 +56,7 @@ public class DemoBall : MonoBehaviour
 			ResetBall();
 		}
 	}
-
+	
 	void ResetBall()
 	{
 		transform.position = startingPosition;

@@ -8,6 +8,8 @@ TagManager:
   - Paddle2
   - Goal1
   - Goal2
+  - Ball
+  - CameraSpin
   layers:
   - Default
   - TransparentFX
